@@ -1,0 +1,93 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+ion-tab-bar {
+  --ion-tab-bar-background: #d8dfe9;
+}
+
+ion-header {
+  --ion-toolbar-background: #d8dfe9;
+  --ion-toolbar-color: #0f1719;
+}
+
+.border-bottom {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+ion-grid {
+  --ion-grid-padding-xs: 0;
+  --ion-grid-padding: 0;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+ion-title {
+  justify-content: center;
+  text-align: center;
+}
+
+ion-content {
+  --ion-font-family: "Roboto", sans-serif;
+  --ion-background-color: linear-gradient(
+    0deg,
+    rgba(216, 223, 233, 1) 0%,
+    rgba(240, 246, 255, 1) 100%
+  );
+}
+
+p {
+  font-weight: 300;
+}
+
+.btn-link {
+  font-size: 16px;
+  text-decoration: underline;
+  background-color: transparent;
+  font-weight: 500;
+  box-sizing: content-box;
+  display: inline-block;
+  color: #0f1719;
+}
+
+ion-checkbox {
+  margin-left: 15px;
+}
+
+html {
+  width: 360px;
+  height: 600px;
+  min-width: 360px;
+  min-height: 600px;
+}
+
+body {
+  width: 360px;
+  min-width: 360px;
+}
+
+.form-step {
+  overflow: auto;
+}

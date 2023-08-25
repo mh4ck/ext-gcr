@@ -1,0 +1,19 @@
+.page-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  img {
+    margin-top: 30px;
+  }
+
+  h2 {
+    color: #538a2c;
+  }
+
+  p {
+    padding: 0px 20px;
+  }
+}

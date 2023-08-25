@@ -1,0 +1,7 @@
+{
+  "name": "Gozo Car Rental",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

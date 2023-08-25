@@ -1,0 +1,265 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title><img src="./assets/images/logo.png" height="26" /></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large"
+        ><img src="./assets/images/logo.png" height="26"
+      /></ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="form-steps">
+    <div [ngClass]="step == 1 ? directionClass(): 'form-step out'">
+      <div class="form-content">
+        <label>Choose the type of Car:</label>
+        <div class="box-wrapper-h">
+          <div
+            [ngClass]="requestService.get('doors') == '2'?'active box': 'box'"
+            (click)="requestService.set('doors', '2')"
+          >
+            2 Doors
+          </div>
+          <div
+            [ngClass]="requestService.get('doors') == '4'?'active box': 'box'"
+            (click)="requestService.set('doors', '4')"
+          >
+            4 Doors
+          </div>
+        </div>
+      </div>
+      <div class="form-actions">
+        <ion-button fill="outline" *ngIf="canNext()" (click)="nextStep('doors')"
+          >Next <ion-icon name="chevron-forward-outline"></ion-icon
+        ></ion-button>
+        <ion-button fill="outline" *ngIf="canSubmit()" (click)="submit()"
+          >Submit <ion-icon name="chevron-forward-outline"></ion-icon
+        ></ion-button>
+        <ion-button *ngIf="canBack()" fill="clear" (click)="prevStep()"
+          ><ion-icon name="chevron-back-outline"></ion-icon> Back</ion-button
+        >
+      </div>
+    </div>
+
+    <div [ngClass]="step == 2 ? directionClass(): 'form-step out'">
+      <div class="form-content">
+        <label>Choose the transmission:</label>
+        <div class="box-wrapper-h">
+          <div
+            [ngClass]="requestService.get('transmission') == 'automatic'?'active box': 'box'"
+            (click)="requestService.set('transmission', 'automatic')"
+          >
+            Automatic
+          </div>
+          <div
+            [ngClass]="requestService.get('transmission') == 'manual'?'active box': 'box'"
+            (click)="requestService.set('transmission', 'manual')"
+          >
+            Manual
+          </div>
+        </div>
+      </div>
+      <div class="form-actions">
+        <ion-button
+          fill="outline"
+          *ngIf="canNext()"
+          (click)="nextStep('transmission')"
+          >Next <ion-icon name="chevron-forward-outline"></ion-icon
+        ></ion-button>
+        <ion-button fill="outline" *ngIf="canSubmit()" (click)="submit()"
+          >Submit <ion-icon name="chevron-forward-outline"></ion-icon
+        ></ion-button>
+        <ion-button *ngIf="canBack()" fill="clear" (click)="prevStep()"
+          ><ion-icon name="chevron-back-outline"></ion-icon> Back</ion-button
+        >
+      </div>
+    </div>
+
+    <div [ngClass]="step == 3 ? directionClass(): 'form-step out'">
+      <div class="form-content">
+        <label>Choose the pickup location:</label>
+        <div class="box-wrapper-v">
+          <div class="box">
+            <ion-select
+              aria-label="Location"
+              fill="outline"
+              interface="action-sheet"
+              placeholder="Select Location"
+              (ionChange)="handleSelect('pickup-location', $event)"
+            >
+              <ion-select-option value="mgarr">Mgarr Habor</ion-select-option>
+              <ion-select-option value="victoria">Victoria</ion-select-option>
+              <ion-select-option value="nadur">Nadur</ion-select-option>
+              <ion-select-option value="gharb">Gharb</ion-select-option>
+              <ion-select-option value="munxar">Munxar</ion-select-option>
+              <ion-select-option value="fontana">Fontana</ion-select-option>
+              <ion-select-option value="zebugg">Zebbug</ion-select-option>
+              <ion-select-option value="marsalforn"
+                >Marsalforn</ion-select-option
+              >
+              <ion-select-option value="st-lawrence"
+                >St. Lawrence</ion-select-option
+              >
+              <ion-select-option value="ghasri">Ghasri</ion-select-option>
+              <ion-select-option value="qala">Qala</ion-select-option>
+              <ion-select-option value="sannat">Sannat</ion-select-option>
+              <ion-select-option value="ghansielem"
+                >Ghajnsielem</ion-select-option
+              >
+              <ion-select-option value="xlendi">Xlendi</ion-select-option>
+              <ion-select-option value="xewkija">Xewkija</ion-select-option>
+              <ion-select-option value="xaghra">Xaghra</ion-select-option>
+              <ion-select-option value="citadel">Citadel</ion-select-option>
+              <ion-select-option value="santa-lucija"
+                >Santa Lucija</ion-select-option
+              >
+              <ion-select-option value="qbajjar">Qbajjar</ion-select-option>
+            </ion-select>
+          </div>
+          <label>Choose the pickup time:</label>
+          <div class="box n-pb">
+            <ion-datetime
+              id="pickuptime"
+              (ionChange)="handleSelect('pickup-datetime', $event)"
+            ></ion-datetime>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <ion-button
+          fill="outline"
+          *ngIf="canNext()"
+          (click)="nextStep(['pickup-location','pickup-datetime'])"
+          >Next <ion-icon name="chevron-forward-outline"></ion-icon
+        ></ion-button>
+        <ion-button fill="outline" *ngIf="canSubmit()" (click)="submit()"
+          >Submit <ion-icon name="chevron-forward-outline"></ion-icon
+        ></ion-button>
+        <ion-button *ngIf="canBack()" fill="clear" (click)="prevStep()"
+          ><ion-icon name="chevron-back-outline"></ion-icon> Back</ion-button
+        >
+      </div>
+    </div>
+
+    <div [ngClass]="step == 4 ? directionClass(): 'form-step out'">
+      <div class="form-content">
+        <label>Choose the drop-off location:</label>
+        <div class="box-wrapper-v">
+          <div class="box">
+            <ion-select
+              aria-label="Location"
+              fill="outline"
+              placeholder="Select Location"
+              interface="action-sheet"
+              (ionChange)="handleSelect('dropoff-location', $event)"
+            >
+              <ion-select-option value="mgarr">Mgarr Habor</ion-select-option>
+              <ion-select-option value="victoria">Victoria</ion-select-option>
+              <ion-select-option value="nadur">Nadur</ion-select-option>
+              <ion-select-option value="gharb">Gharb</ion-select-option>
+              <ion-select-option value="munxar">Munxar</ion-select-option>
+              <ion-select-option value="fontana">Fontana</ion-select-option>
+              <ion-select-option value="zebugg">Zebbug</ion-select-option>
+              <ion-select-option value="marsalforn"
+                >Marsalforn</ion-select-option
+              >
+              <ion-select-option value="st-lawrence"
+                >St. Lawrence</ion-select-option
+              >
+              <ion-select-option value="ghasri">Ghasri</ion-select-option>
+              <ion-select-option value="qala">Qala</ion-select-option>
+              <ion-select-option value="sannat">Sannat</ion-select-option>
+              <ion-select-option value="ghansielem"
+                >Ghajnsielem</ion-select-option
+              >
+              <ion-select-option value="xlendi">Xlendi</ion-select-option>
+              <ion-select-option value="xewkija">Xewkija</ion-select-option>
+              <ion-select-option value="xaghra">Xaghra</ion-select-option>
+              <ion-select-option value="citadel">Citadel</ion-select-option>
+              <ion-select-option value="santa-lucija"
+                >Santa Lucija</ion-select-option
+              >
+              <ion-select-option value="qbajjar">Qbajjar</ion-select-option>
+            </ion-select>
+          </div>
+          <label>Choose the drop-off time:</label>
+          <div class="box n-pb">
+            <ion-datetime
+              id="dropofftime"
+              (ionChange)="handleSelect('dropoff-datetime', $event)"
+            ></ion-datetime>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <ion-button
+          fill="outline"
+          *ngIf="canNext()"
+          (click)="nextStep(['dropoff-location','dropoff-datetime'])"
+          >Next <ion-icon name="chevron-forward-outline"></ion-icon
+        ></ion-button>
+        <ion-button fill="outline" *ngIf="canSubmit()" (click)="submit()"
+          >Submit <ion-icon name="chevron-forward-outline"></ion-icon
+        ></ion-button>
+        <ion-button *ngIf="canBack()" fill="clear" (click)="prevStep()"
+          ><ion-icon name="chevron-back-outline"></ion-icon> Back</ion-button
+        >
+      </div>
+    </div>
+
+    <div [ngClass]="step == 5 ? directionClass(): 'form-step out'">
+      <div class="form-content">
+        <label>Confirm your request:</label>
+        <div class="box-wrapper-v">
+          <div class="box border-bottom">
+            <ion-grid>
+              <ion-row>
+                <ion-col>Doors:</ion-col>
+                <ion-col>{{requestService.get('doors')}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>Transmission:</ion-col>
+                <ion-col>{{requestService.get('transmission')}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>Pickup:</ion-col>
+                <ion-col
+                  >{{requestService.get('pickup-location')}} at
+                  {{requestService.get('pickup-datetime')}}</ion-col
+                >
+              </ion-row>
+              <ion-row>
+                <ion-col>Dropoff:</ion-col>
+                <ion-col
+                  >{{requestService.get('dropoff-location')}} at
+                  {{requestService.get('dropoff-datetime')}}</ion-col
+                >
+              </ion-row>
+            </ion-grid>
+          </div>
+        </div>
+      </div>
+      <div class="form-actions">
+        <ion-button fill="outline" *ngIf="canNext()" (click)="nextStep()"
+          >Next <ion-icon name="chevron-forward-outline"></ion-icon
+        ></ion-button>
+        <ion-button
+          fill="outline"
+          *ngIf="canSubmit()"
+          (click)="submit()"
+          [disabled]="this.loading"
+          >Send via Whatsapp <ion-icon name="chevron-forward-outline"></ion-icon
+        ></ion-button>
+        <ion-button *ngIf="canBack()" fill="clear" (click)="prevStep()"
+          ><ion-icon name="chevron-back-outline"></ion-icon> Back</ion-button
+        >
+      </div>
+    </div>
+  </div>
+</ion-content>

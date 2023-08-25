@@ -1,0 +1,55 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title><img src="./assets/images/logo.png" height="26" /></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="form-wrapper">
+    <h2>Contact us:</h2>
+    <p>
+      We're thrilled for your interest in our Gozo car rental service. Simply
+      fill out this form and we'll connect with you as soon as possible. We look
+      forward to assisting you.
+    </p>
+    <ion-input
+      label="Subject"
+      label-placement="floating"
+      fill="outline"
+      [value]="form.subject"
+      (ionChange)="handleChange('subject', $event)"
+      placeholder="Enter a subject"
+    ></ion-input>
+    <br />
+    <ion-input
+      label="Name"
+      label-placement="floating"
+      fill="outline"
+      [value]="form.name"
+      (ionChange)="handleChange('name', $event)"
+      placeholder="Enter your name"
+    ></ion-input>
+    <br />
+    <ion-input
+      label="Email"
+      label-placement="floating"
+      fill="outline"
+      [value]="form.email"
+      (ionChange)="handleChange('email', $event)"
+      placeholder="Enter your email"
+    ></ion-input>
+    <br />
+    <ion-textarea
+      label="Message"
+      labelPlacement="floating"
+      fill="outline"
+      [value]="form.message"
+      (ionChange)="handleChange('message', $event)"
+      placeholder="Enter your message"
+    ></ion-textarea>
+    <br />
+    <ion-button expand="block" fill="outline" color="primary" (click)="submit()"
+      >Submit <ion-icon name="send"></ion-icon
+    ></ion-button>
+  </div>
+</ion-content>
